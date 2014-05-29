@@ -7,6 +7,8 @@ module Colors {
             private colorDataService: ColorDataService) {
             this.colorData = colorDataService.getAllColors();
         }
+        showName: boolean = true;
+        showValue: boolean = true;
 
         colorData: ng.resource.IResourceArray<ng.resource.IResource<IColor>>;
     }
