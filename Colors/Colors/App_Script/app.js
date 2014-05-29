@@ -7,5 +7,6 @@ var Colors;
         "$resource", function (r) {
             return new Colors.ColorDataService(r);
         }]);
+    colorsApp.directive("coloredit", Colors.Controls.ColorEditControl);
 })(Colors || (Colors = {}));
 //# sourceMappingURL=app.js.map

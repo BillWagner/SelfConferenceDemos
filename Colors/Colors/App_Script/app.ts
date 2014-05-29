@@ -6,4 +6,6 @@ module Colors {
     colorsApp.factory("colorDataService", ["$resource", (r) => {
         return new ColorDataService(r);
     }]);
+    colorsApp.directive("coloredit", Controls.ColorEditControl);
+
 }
