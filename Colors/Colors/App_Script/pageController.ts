@@ -24,6 +24,13 @@ module Colors {
             this.showName = !this.showName;
         }
 
+        deleteColor(color) {
+            this.colorDataService.deleteColor(color);
+            var index = this.colorData.indexOf(color);
+            this.colorData.splice(index, 1);
+        }
+
+
 
         colorData: Array<IColor>;
     }

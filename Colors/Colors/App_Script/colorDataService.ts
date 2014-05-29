@@ -9,12 +9,17 @@ module Colors {
                 { id: "@id" },
                 {
                     query: { method: "GET", isArray: true },
+                    delete: { method: "DELETE" }
                 });
             this.loadAllColors();
         }
 
         public getAllColors() {
             return this.allColors;
+        }
+
+        public deleteColor(color: IColor) {
+            this.resource.delete({ id: color.Id }, () => this.loadAllColors());
         }
 
         private loadAllColors() {

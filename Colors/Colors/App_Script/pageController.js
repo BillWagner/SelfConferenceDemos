@@ -21,6 +21,12 @@ var Colors;
         PageController.prototype.toggleShowName = function () {
             this.showName = !this.showName;
         };
+
+        PageController.prototype.deleteColor = function (color) {
+            this.colorDataService.deleteColor(color);
+            var index = this.colorData.indexOf(color);
+            this.colorData.splice(index, 1);
+        };
         return PageController;
     })();
     Colors.PageController = PageController;

@@ -6,12 +6,20 @@ var Colors;
         function ColorDataService($resource) {
             this.allColors = new Array();
             this.resource = $resource("api/Colors/:id", { id: "@id" }, {
-                query: { method: "GET", isArray: true }
+                query: { method: "GET", isArray: true },
+                delete: { method: "DELETE" }
             });
             this.loadAllColors();
         }
         ColorDataService.prototype.getAllColors = function () {
             return this.allColors;
+        };
+
+        ColorDataService.prototype.deleteColor = function (color) {
+            var _this = this;
+            this.resource.delete({ id: color.Id }, function () {
+                return _this.loadAllColors();
+            });
         };
 
         ColorDataService.prototype.loadAllColors = function () {
