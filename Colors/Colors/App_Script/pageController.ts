@@ -1,4 +1,5 @@
 ﻿/// <reference path="../scripts/typings/angularjs/angular-resource.d.ts" />
+/// <reference path="colordataservice.ts" />
 
 
 module Colors {
@@ -10,7 +11,20 @@ module Colors {
         }
         showName: boolean = true;
         showValue: boolean = true;
+        showSample: boolean = true;
+        sortOrder: string = "name";
 
-        colorData: ng.resource.IResourceArray<ng.resource.IResource<IColor>>;
+        toggleShowSample() {
+            this.showSample = !this.showSample;
+        }
+        toggleShowValue() {
+            this.showValue = !this.showValue;
+        }
+        toggleShowName() {
+            this.showName = !this.showName;
+        }
+
+
+        colorData: Array<IColor>;
     }
 }

@@ -13,7 +13,14 @@ module Colors {
         }
 
         public getAllColors() {
-            return this.resource.query();
+            var result = new Array<IColor>();
+
+            this.resource.query({}, function (jsonResult) {
+                for (var i = 0; i < jsonResult.length; i++) {
+                    result.push(new Color(jsonResult[i]));
+                }
+            });
+            return result;
         }
 
         private resource: ng.resource.IResourceClass<ng.resource.IResource<IColor>>;

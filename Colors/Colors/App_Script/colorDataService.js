@@ -9,7 +9,14 @@ var Colors;
             });
         }
         ColorDataService.prototype.getAllColors = function () {
-            return this.resource.query();
+            var result = new Array();
+
+            this.resource.query({}, function (jsonResult) {
+                for (var i = 0; i < jsonResult.length; i++) {
+                    result.push(new Colors.Color(jsonResult[i]));
+                }
+            });
+            return result;
         };
         return ColorDataService;
     })();
