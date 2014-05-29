@@ -10,19 +10,26 @@ module Colors {
                 {
                     query: { method: "GET", isArray: true },
                 });
+            this.loadAllColors();
         }
 
         public getAllColors() {
-            var result = new Array<IColor>();
-
-            this.resource.query({}, function (jsonResult) {
-                for (var i = 0; i < jsonResult.length; i++) {
-                    result.push(new Color(jsonResult[i]));
-                }
-            });
-            return result;
+            return this.allColors;
         }
 
+        private loadAllColors() {
+            var me = this;
+            this.resource.query({}, (jsonColors) => this.loadColorsCache(jsonColors));
+        }
+
+        private loadColorsCache(jsonColors: IColor[]) {
+            this.allColors.splice(0, this.allColors.length);
+            for (var i = 0; i < jsonColors.length; i++) {
+                this.allColors.push(new Color(jsonColors[i]));
+            }
+        }
+
+        private allColors = new Array<IColor>();
         private resource: ng.resource.IResourceClass<ng.resource.IResource<IColor>>;
     }
 
