@@ -1,4 +1,5 @@
-﻿/// <reference path="../scripts/typings/angularjs/angular-resource.d.ts" />
+﻿/// <reference path="color.ts" />
+/// <reference path="../scripts/typings/angularjs/angular-resource.d.ts" />
 var Colors;
 (function (Colors) {
     var ColorDataService = (function () {

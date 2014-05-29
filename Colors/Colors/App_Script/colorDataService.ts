@@ -1,12 +1,7 @@
-﻿/// <reference path="../scripts/typings/angularjs/angular-resource.d.ts" />
+﻿/// <reference path="color.ts" />
+/// <reference path="../scripts/typings/angularjs/angular-resource.d.ts" />
 
 module Colors {
-
-    export interface IColor {
-        Id: number;
-        name: string;
-        value: string;
-    }
 
     export class ColorDataService {
         constructor($resource: ng.resource.IResourceService) {
