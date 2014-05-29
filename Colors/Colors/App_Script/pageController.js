@@ -1,4 +1,5 @@
-﻿var Colors;
+﻿/// <reference path="../scripts/typings/angularjs/angular-resource.d.ts" />
+var Colors;
 (function (Colors) {
     var PageController = (function () {
         function PageController($scope, colorDataService) {

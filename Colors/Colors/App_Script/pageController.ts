@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="../scripts/typings/angularjs/angular-resource.d.ts" />
+
 
 module Colors {
     export class PageController {
