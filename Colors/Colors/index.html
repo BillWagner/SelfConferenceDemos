@@ -1,0 +1,62 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml" ng-app="colorsApp">
+<head>
+    <title>Colors Editor</title>
+</head>
+<body>
+    <div ng-controller="pageController as vm">
+        <button ng-click=vm.toggleShowSample()>Toggle Sample</button>
+        <button ng-click="vm.toggleShowName()">Toggle Name</button>
+        <button ng-click="vm.toggleShowValue()">Toggle Value</button>
+        <br />
+        <select ng-model="vm.sortOrder">
+            <option value="name" selected>Sort By Color (a-z)</option>
+            <option value="-name">Sort By Color (z-a)</option>
+            <option value="value">sort by rgb value (ascending)</option>
+            <option value="-value">sort by rgb value (descending)</option>
+        </select>
+        <br />
+        filter colors: <input ng-model="vm.searchString" />
+        <ul>
+            <li ng-repeat="color in vm.colorData | orderBy: vm.sortOrder | filter: vm.searchString">
+                <span>
+                    <button ng-click="vm.toggleEditMode(color)">Edit</button>
+                </span>
+                <span>
+                    <button ng-click="vm.deleteColor(color)">Delete</button>
+                </span>
+                <span ng-hide="!vm.showSample">
+                    <button ng-click=color.increaseLength()>+</button>
+                    <button ng-click=color.decreaseLength()>-</button>
+                </span>
+                <span ng-style="{ color:color.value }" ng-hide="!vm.showSample">
+                    {{color.getSample()}}
+                </span>
+                <span ng-show="vm.showName && !color.editMode" ng-style="{ color:color.value }">
+                    {{color.name}}
+                </span>
+                <span ng-show="vm.showValue && !color.editMode" ng-style="{ color:color.value }">
+                    {{color.value}}
+                </span>
+                <coloredit target="color.editColor" ng-show="color.editMode"></coloredit>
+            </li>
+        </ul>
+        <span>
+            <button ng-click=vm.toggleAddMode()>
+                {{vm.addText()}}
+            </button>
+        </span>
+        <div ng-show="vm.addMode">
+            <span>
+                <button ng-click=newColor.increaseLength()>+</button>
+                <button ng-click=newColor.decreaseLength()>-</button>
+            </span>
+            <span ng-style="{ color:newColor.value }">
+                {{vm.newColor.getSample()}}
+            </span>
+            <coloredit target="vm.newColor"></coloredit>
+        </div>
+    </div>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+</body>
+</html>
