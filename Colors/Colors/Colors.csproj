@@ -449,6 +449,7 @@
     <TypeScriptCompile Include="App_Script\app.ts" />
     <TypeScriptCompile Include="App_Script\Color.ts" />
     <TypeScriptCompile Include="App_Script\colorDataService.ts" />
+    <TypeScriptCompile Include="App_Script\coloredit.ts" />
     <TypeScriptCompile Include="App_Script\pageController.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />

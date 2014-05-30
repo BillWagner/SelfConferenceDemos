@@ -2,13 +2,19 @@
 /// <reference path="../scripts/typings/angularjs/angular-resource.d.ts" />
 
 module Colors {
+    interface ICustomResourceClass<T> extends ng.resource.IResourceClass<T> {
+        create(color: IColor, success: Function);
+    }
 
     export class ColorDataService {
         constructor($resource: ng.resource.IResourceService) {
-            this.resource = $resource("api/Colors/:id",
+            this.resource = <ICustomResourceClass<ng.resource.IResource<IColor>>> $resource("api/Colors/:id",
                 { id: "@id" },
                 {
+                    get: { method: "GET" },
+                    save: { method: "PUT" },
                     query: { method: "GET", isArray: true },
+                    create: { method: "POST" },
                     delete: { method: "DELETE" }
                 });
             this.loadAllColors();
@@ -20,6 +26,14 @@ module Colors {
 
         public deleteColor(color: IColor) {
             this.resource.delete({ id: color.Id }, () => this.loadAllColors());
+        }
+
+        public createColor(color: IColor) {
+            this.resource.create(color, () => this.loadAllColors());
+        }
+
+        public saveColor(color: IColor) {
+            this.resource.save({ id: color.Id }, color, () => this.loadAllColors());
         }
 
         private loadAllColors() {

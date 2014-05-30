@@ -6,7 +6,10 @@ var Colors;
         function ColorDataService($resource) {
             this.allColors = new Array();
             this.resource = $resource("api/Colors/:id", { id: "@id" }, {
+                get: { method: "GET" },
+                save: { method: "PUT" },
                 query: { method: "GET", isArray: true },
+                create: { method: "POST" },
                 delete: { method: "DELETE" }
             });
             this.loadAllColors();
@@ -18,6 +21,20 @@ var Colors;
         ColorDataService.prototype.deleteColor = function (color) {
             var _this = this;
             this.resource.delete({ id: color.Id }, function () {
+                return _this.loadAllColors();
+            });
+        };
+
+        ColorDataService.prototype.createColor = function (color) {
+            var _this = this;
+            this.resource.create(color, function () {
+                return _this.loadAllColors();
+            });
+        };
+
+        ColorDataService.prototype.saveColor = function (color) {
+            var _this = this;
+            this.resource.save({ id: color.Id }, color, function () {
                 return _this.loadAllColors();
             });
         };

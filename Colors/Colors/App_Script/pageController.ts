@@ -13,6 +13,7 @@ module Colors {
         showValue: boolean = true;
         showSample: boolean = true;
         sortOrder: string = "name";
+        addMode: boolean;
 
         toggleShowSample() {
             this.showSample = !this.showSample;
@@ -30,8 +31,31 @@ module Colors {
             this.colorData.splice(index, 1);
         }
 
+        toggleAddMode() {
+            if (this.addMode) {
+                this.colorDataService.createColor(this.newColor);
+                this.colorData.push(this.newColor);
+                this.newColor = new Color(null);
+            }
+            this.addMode = !this.addMode;
+        }
 
+        toggleEditMode(color) {
+            color.editMode = !color.editMode;
+            if (color.editMode) {
+                color.editColor = {
+                    name: color.name,
+                    value: color.value,
+                    Id: color.Id
+                };
+            } else {
+                this.colorDataService.saveColor(color.editColor);
+                color.name = color.editColor.name;
+                color.value = color.editColor.value;
+            }
+        }
 
+        newColor = new Color(null);
         colorData: Array<IColor>;
     }
 }
