@@ -7,5 +7,4 @@ module Colors {
         return new ColorDataService(r);
     }]);
     colorsApp.directive("coloredit", Controls.ColorEditControl);
-
 }
