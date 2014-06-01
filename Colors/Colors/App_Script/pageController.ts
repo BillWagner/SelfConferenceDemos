@@ -55,6 +55,10 @@ module Colors {
             }
         }
 
+        addText() {
+            return (this.addMode) ? "Save" : "Add";
+        }
+
         newColor = new Color(null);
         colorData: Array<IColor>;
     }

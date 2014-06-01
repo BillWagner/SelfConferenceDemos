@@ -52,6 +52,10 @@ var Colors;
                 color.value = color.editColor.value;
             }
         };
+
+        PageController.prototype.addText = function () {
+            return (this.addMode) ? "Save" : "Add";
+        };
         return PageController;
     })();
     Colors.PageController = PageController;

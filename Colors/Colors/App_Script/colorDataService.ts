@@ -49,7 +49,7 @@ module Colors {
         }
 
         private allColors = new Array<IColor>();
-        private resource: ng.resource.IResourceClass<ng.resource.IResource<IColor>>;
+        private resource: ICustomResourceClass<ng.resource.IResource<IColor>>;
     }
 
 }
